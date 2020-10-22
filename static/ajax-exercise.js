@@ -42,6 +42,14 @@ $("#weather-form").on('submit', showWeather);
 
 function orderMelons(evt) {
     evt.preventDefault();
+    const formInputs = {
+        'qty': $('#qty-field').val(),
+        'melon_type': $('#melon-type-field').val()
+    };
+    $.post('/order-melons.json', formInputs, (res)=>{
+        $("#order-status").text(res['code']);
+        $("#order-status").text(res['msg']);
+    })
 
     // TODO: show the result message after your form
     // TODO: if the result code is ERROR, make it show up in red (see our CSS!)
